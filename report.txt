@@ -1,0 +1,139 @@
+1. Enter the number of hours it took you to complete the project between
+   the <<< and >>> signs below (eg, <<<10>>>).
+
+   <<<14>>>
+   
+2. Enter the difficulty level (1: very easy; 5: very difficult) of the project
+   between <<< and >>> signs below (eg, <<<3>>>).
+
+   <<<3>>>
+
+3. Provide a short description of how you approached each problem, issues you 
+   encountered, and how you resolved those issues.
+
+   Problem 1 (Deque)
+       Approach: The goal of the program is to create a data structure called Linked Deque
+       (doubly linked).
+       Instance Variables - I defined Node first (which is reference to the first element in the deque),
+       Node last(which is a reference to the last in the element in the deque), n(which keeps track of
+       all the elements in the deque, that is the stores the size of the deque)
+       LinkedDeque() - It is a constructor, where i initialises the instance variables. To create an empty
+       deque, I set Node first to null, Node last to null, and n to 0. Thus, an empty deque.
+       1)isEmpty() - This method is checking if the deque is empty or not. If the value of n is 0(that is
+       there is no element in the deque) then the deque is empty and thus this method will return True.
+       Otherwise, it will return false.
+       2)size()  - This method returns the size of the deque that is the value of n.
+       3) addFirst()- This method adds the item at the head of the deque. For this, I set the
+       Node oldfirst to the value of the node first, that is both the node points to the same object.
+       Then, I created a node first, which is a completely new code. Then I set the node first to point
+       to the given item. Thus, the new node first now points to the item. Then, to join the
+       node first with the deque, I establish a connection between the oldfirst and first in the forward
+       direction. However, I check if the deque is empty or not, if it is then the node last and first
+       points to the same item otherwise I establish a backward connection between the Node first and
+       oldfirst. Hence, the item is added efficiently.
+       addLast() - This method is adding the item in the end of the deque. For this, I set the node
+       oldlast and last to point to the same item. Then, I create a new node last which points
+       to the given new item. To join the newly created node last to the deque, I establish a connection
+       between the node oldlast and last in the backward direction. However, I check if the item is added
+       is the very item in the deque or not, if yes then i set node first and last to point to the same
+       object. otherwise, I establish a forward connection between the node oldlast and last.
+       peerFirst() - This method simply return the first item from the deque if the deque is not empty.
+       removeFirst() - This method removes the first item from the deque and return it in the end.
+       It grabs the last item first and store the value in the item. Then it set the node first to
+       point to the next element in the deque. Thus, the item is deleted from the deque and
+       hence we decrement the count of n by 1. Also, I check if after deleting the item from the deque,
+       if the deque is empty or not. If it is empty then I set the node last to null, meaning that
+       the node last points to nothing. else, the node first points to null in the backward direction
+       meaning that there is no items in the backward direction.
+       peekLast() - It simply returns the last item in the deque if the deque is not empty.
+       removeLast() - This method simply delete the last item from the deque and return it in the end.
+       I grabbed the last element from the deque first. Then I set the node last to point to the
+       previous element in the deque. Thus, the last item is deleted from the deque and hence decrement
+       the count of n by 1.  However, I check if after deleting the item from the deque, is deque is
+       empty or not. If yes, then I set the node first to point to null as there is no items. Otherwise,
+       I set the node last to null in the forward direction meaning that there is no items anymore.
+       Iterator - Returns an iterator to iterate over the items in this deque from front to back.
+       toString() - returns the string representation of the deque.
+
+       Issues and resolution: The issue that I had with this program was that in the addFirst method
+       I was setting first = last, which was wrong as it should be last = first because we are adding
+       the element at the starting. The issue was resolved by professor Swami.
+       Another issue that I had was --
+                    else { oldlast.next = last;
+                           last.prev = oldlast;}
+       with both the addFirst and addLast method. This was giving me error, as last.prev = oldlast
+       should be in wither condition. This was resolved by professor Swami.
+
+                                                     ;
+   Problem 2 (Sorting Strings)
+       Approach:  This program accepts strings from the standard input, stores them in the
+       LinkedDeque and returns the sorted strings as the standard output.
+       It first accepts the string from the standard input as long as it is not empty.
+       Then,  it checks if the string w from the standard input is less than the first item of the
+       deque or not. If it is then it adds the string at the head of the deque.
+       Otherwise, it checks if the string w is greater than the last element of the deque d,
+       if yes then it adds the string w at the end of the deque. But, if none of the condition
+       is true, then as long as the items of the deque is greater than the string w,
+       we store those items in a temporary stack s. Once the starting item is greater than the string w,
+       it adds the string w at the head of the deque d. After that it removes the items from the deque s
+       and adds them one by one to the deque d again.
+       Thus, at the end we get a sorted string.
+
+       Issues and resolution: The error I had with this program was that I was coding as
+        !(w, peek. Last)  to check of string w is greater than the last element of the deque d.
+        It was wrong as in that way, it would result in the string w greater than the last item and
+        equal to the lats item. This issue was resolved by professor Swami.
+
+   Problem 3 (Random Queue)
+       Approach:  A random queue is similar to the queue, it's just that items are removed randomly
+       from it.
+       Instance Variable - item[] q (Array to store the items of the queue), and
+       int n(to store the size of the queue).
+       Constructor() - initialises the variable. It sets n to 0 and initialises the array with capacity 2.
+       size() - return the size of the array.
+       enqueue() - It checks if the item is null or not. If it is null, then it
+       throws an error. Otherwise, it checks the length of the array. If the size of the array
+       is equal to its length then it resizes the size to double its length.
+       At the end,it adds the item at the end of the queue at the current index that is at n.
+       Sample() - Returns a random item from the random queue q by calling UniformInt function.
+       deque() - This method first gets a random number by calling a random function.
+       Then it sets the value of the item at the random index to the item of the last index.
+       Thus, a random number is removed. It then checks the size of the array. If it's 1/4th of its length
+       then it reduces it to half of its length.
+       RandomQueIterator() - Here, instance variables  are initialised fot the private class Iterator.
+       Here, items copies and stores all the items from the array q and shuffles it.
+       Current is the current index; items is the array to store the items in the queue.
+       hasNext() - Simply checks if there is more items to iterate in the array items.
+       ItemNext() - It grabs the item at the current index and return the item at the end.
+       Also, incrementing current by 1.
+
+        Issues and resolution: I had no issues with this problem.
+
+   Problem 4 (Sampling Integers)
+       Approach: This program accepts lo, hi, and k as command line arguments of integer datatype.
+       It also takes mode of string datatype as command line argument.
+       Then it prints 'k' integers from lo to hi either with sampling or without sampling depending
+       on the type of mode provided.
+       First, for each integer from lo to hi, it stores the numbers in the random queue q.
+       If the mode is '+',  for each k integers from lo to hi, it then samples the integers
+       by calling sample method on random queue q and store its value in the variable r.
+       Then simply print the number r at the end.
+       If the mode '-', the for each k integers from lo to hu, it simply dequeues the  number from
+       random queue q, stores its value in variable r and prints it at the end.
+       Otherwise, it throws and error saying 'Illegal mode'.
+
+       Issues and resolution: I had no issues with this problem
+
+4. Did you receive help from anyone? List their names, status (classmate,
+   CS210 grad, TA, other), and the nature of help received.
+
+   Name               Status          Help Received
+   Swami Iyer        Professor    Prob 1, Prob2 , Buffer.java
+
+   Richard Anarfi       T.A.      BinaryStrings.java, Buffer.java
+
+5. List any other comments here. Feel free to provide any feedback on how
+   much you learned from doing the assignment, and whether you enjoyed
+   doing it.
+
+   It is an interesting project.
