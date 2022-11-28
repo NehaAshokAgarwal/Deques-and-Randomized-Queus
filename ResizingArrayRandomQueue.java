@@ -12,9 +12,7 @@ public class ResizingArrayRandomQueue<Item> implements Iterable<Item> {
 
     // Constructs an empty random queue.
     public ResizingArrayRandomQueue() {
-        // Constructing array of capacity 2.
         this.q = (Item[]) new Object[2];
-        // size of te array is set to 0.
         this.n = 0;
     }
 
@@ -30,17 +28,12 @@ public class ResizingArrayRandomQueue<Item> implements Iterable<Item> {
 
     // Adds item to the end of this queue.
     public void enqueue(Item item) {
-        // if item is null, then throw an exception NullPointerException saying
-        // item is null.
         if (item == null) {
             throw new NullPointerException("item is null");
-        }
-        // if size of the queue is equal to its length,
-        // then resize it to double its length.
+        }.
         if (n == q.length) {
             resize(2 * q.length);
         }
-        // add the item at the current index in the array.
         q[n] = item;
         // increment n by 1.
         n += 1;
@@ -48,41 +41,26 @@ public class ResizingArrayRandomQueue<Item> implements Iterable<Item> {
 
     // Returns a random item from this queue.
     public Item sample() {
-        // if the queue is empty then throw an exception NoSuchElementException
-        // saying Random queue is empty.
         if (n == 0) {
             throw new NoSuchElementException("Random queue is empty");
         }
-        // Otherwise, get any random value by calling a random function
-        // UniformInt, within the allowed range.
         int r = StdRandom.uniform(0, n);
-        // Return the item at the index.
         return q[r];
     }
 
     // Removes and returns a random item from this queue.
     public Item dequeue() {
-        // if the random queue is empty, then throw an exception NoSuchElementException
-        // saying Random queue is empty.
         if (n == 0) {
             throw new NoSuchElementException("Random queue is empty");
         }
-        // otherwise, get a random number within the allowed range,
         int r = StdRandom.uniform(0, n);
-        // grab the item at that index
         Item item = q[r];
-        // place the item at the last index to the index at r(ranndom number taken above)
         q[r] = q[n - 1];
-        // set the last element to null, hence last item is  randomly.
         q[n - 1] = null;
-        // If after removing the item, the size of the array is 1/4th of its length
-        // then resize it to its half-length.
         if (n > 0 && n == q.length / 4) {
             resize(q.length / 2);
         }
-        // decrement n by 1, as the item is removed.
         n--;
-        // return the deleted item.
         return item;
     }
 
@@ -103,18 +81,14 @@ public class ResizingArrayRandomQueue<Item> implements Iterable<Item> {
 
     // An iterator, doesn't implement remove() since it's optional.
     private class RandomQueueIterator implements Iterator<Item> {
-        Item[] items; // Array to store the items of queue.
-        int current; // Index of the current item in the items.
-
-        // Constructs an iterator.
+        Item[] items; 
+        int current;
+        
         public RandomQueueIterator() {
-            // Initialise array items of capacity 2.
-            items = (Item[]) new Object[n];
-            // for each integer from o, to n, store the integers in the items.
+            items = (Item[]) new Object[n];  
             for (int i = 0; i < n; i++) {
                 items[i] = q[i];
             }
-            // shuffle the items in the array items.
             StdRandom.shuffle(items);
             current = 0;
         }
@@ -126,13 +100,10 @@ public class ResizingArrayRandomQueue<Item> implements Iterable<Item> {
 
         // Returns the next item.
         public Item next() {
-            // if there is no item in the array to iterate then throe an exception.
             if (!hasNext()) {
                 throw new NoSuchElementException("Iterator is empty");
             }
-            // else grab the item at the current index and store its value and return at the end.
             Item item = items[current];
-            // Increment count by 1
             current++;
             return item;
         }
